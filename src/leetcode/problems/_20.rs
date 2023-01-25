@@ -6,28 +6,23 @@ struct Solution;
 impl Solution {
     #[allow(dead_code)]
     pub fn is_valid(s: String) -> bool {
-        let p = HashMap::from([
-            (')', '('),
-            (']', '['),
-            ('}', '{'),
-        ]);
+        let p = HashMap::from([(')', '('), (']', '['), ('}', '{')]);
 
         let mut stack = Vec::with_capacity(s.len());
-        
+
         for ch in s.chars() {
-            if p.values().any(|&c| c==ch) {
+            if p.values().any(|&c| c == ch) {
                 stack.push(ch);
             } else if p.get(&ch) == stack.last() {
-                stack.pop();            
+                stack.pop();
             } else {
-                return false
+                return false;
             }
         }
 
-        return stack.is_empty()
+        return stack.is_empty();
     }
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -37,7 +32,7 @@ mod tests {
         let res = Solution::is_valid(s);
         assert_eq!(res, expected_result);
     }
-    
+
     #[test]
     fn case_1() {
         run(String::from("()"), true);
@@ -48,7 +43,6 @@ mod tests {
         run(String::from("()[]{}"), true);
     }
 
-    
     #[test]
     fn case_3() {
         run(String::from("(]"), false);
