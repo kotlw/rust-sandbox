@@ -1,4 +1,5 @@
 use crate::leetcode::definition::singly_linked_list::ListNode;
+#[allow(unused_imports)]
 use crate::leetcode::utils::linked_list;
 
 #[allow(dead_code)]
